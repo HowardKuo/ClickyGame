@@ -12,7 +12,7 @@ class App extends Component {
   state = {
     cards,
     score: 0,
-    highscore: 0,
+    highScore: 0,
     message: ""
   };
 
@@ -20,8 +20,9 @@ class App extends Component {
     return (
       <div>
         <Navbar
-          highscore={this.state.highscore}
+          highScore={this.state.highScore}
           score={this.state.score}
+          message={this.state.message}
         />
         <Header /> 
         <Wrapper>
