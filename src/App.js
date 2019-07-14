@@ -16,6 +16,19 @@ class App extends Component {
     message: ""
   };
 
+  // imageClick = event => {
+  //   const currentCard = event.target.alt;
+  //       if (currentCard.clicked === false) {
+  //         this.setState({
+  //           card: this.state.card.sort(function(a, b) {
+  //             return 0.5 - Math.random();
+  //           }),
+  //           score: 0,
+  //           message: "You already clicked me! Click an animal to try again."
+  //         });      
+  //   }
+  // }
+
   render() {
     return (
       <div>
@@ -28,10 +41,11 @@ class App extends Component {
         <Wrapper>
           {this.state.cards.map(card => (
             <Card
-              imageClick={this.scoreCount}
-              id={card.id}
-              key={card.id}
+              imageClick={this.imageClick}
+              name={card.name}
               image={card.image}
+              clicked={card.clicked}
+              key={card.id}
             />
           ))}
         </Wrapper>
