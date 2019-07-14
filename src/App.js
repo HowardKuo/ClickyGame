@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import Card from "./components/Card";
 import cards from "./cards.json";
@@ -12,15 +12,17 @@ class App extends Component {
   state = {
     cards,
     score: 0,
-    highscore: 0
+    highscore: 0,
+    message: ""
   };
 
   render() {
     return (
       <div>
-        {/* <Navbar
+        <Navbar
+          highscore={this.state.highscore}
           score={this.state.score}
-        /> */}
+        />
         <Header /> 
         <Wrapper>
           {this.state.cards.map(card => (
