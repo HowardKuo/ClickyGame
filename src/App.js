@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import Navbar from "./components/Navbar";
-// import Jumbotron from "./components/Jumbotron";
+import Header from "./components/Header";
 import Card from "./components/Card";
 import cards from "./cards.json";
 import Wrapper from "./components/Wrapper";
@@ -20,8 +20,8 @@ class App extends Component {
       <div>
         {/* <Navbar
           score={this.state.score}
-        />
-        <Jumbotron /> */} 
+        /> */}
+        <Header /> 
         <Wrapper>
           {this.state.cards.map(card => (
             <Card
