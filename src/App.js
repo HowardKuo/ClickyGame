@@ -16,18 +16,38 @@ class App extends Component {
     message: ""
   };
 
-  // imageClick = event => {
-  //   const currentCard = event.target.alt;
-  //       if (currentCard.clicked === false) {
-  //         this.setState({
-  //           card: this.state.card.sort(function(a, b) {
-  //             return 0.5 - Math.random();
-  //           }),
-  //           score: 0,
-  //           message: "You already clicked me! Click an animal to try again."
-  //         });      
-  //   }
-  // }
+  imageClick = event => {
+    const currentCard = event.target;
+    console.log(currentCard);
+    // console.log(currentCard.getAttribute('value'));
+    
+    if (currentCard.getAttribute('value') === 'false') {
+      currentCard.setAttribute('value', true);
+      // console.log(currentCard.getAttribute('value'));
+      this.setState({
+        card: this.state.cards.sort(function (a, b) {
+          return 0.5 - Math.random();
+        }),
+        score: this.state.score + 1,
+        message: ""
+      });
+    }
+    else {
+      // console.log(this.state.cards, this.state.card)
+      this.setState({
+        card: this.state.cards.sort(function (a, b) {
+          return 0.5 - Math.random();
+        }),
+        score: 0,
+        message: "You already clicked me! Click an animal to try again.",
+      });
+      if (this.state.score > this.state.highScore) {
+        this.setState({
+          highScore: this.state.score
+        })
+      }
+    }
+  }
 
   render() {
     return (
@@ -37,7 +57,7 @@ class App extends Component {
           score={this.state.score}
           message={this.state.message}
         />
-        <Header /> 
+        <Header />
         <Wrapper>
           {this.state.cards.map(card => (
             <Card
