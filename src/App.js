@@ -13,33 +13,47 @@ class App extends Component {
     cards,
     score: 0,
     highScore: 0,
-    message: ""
+    message: "",
+    clicked: []
   };
 
   imageClick = event => {
     const currentCard = event.target;
-    console.log(currentCard);
-    // console.log(currentCard.getAttribute('value'));
-    
-    if (currentCard.getAttribute('value') === 'false') {
-      currentCard.setAttribute('value', true);
-      // console.log(currentCard.getAttribute('value'));
+    const clickChecker = this.state.clicked.indexOf(currentCard) > -1;
+
+    if (!clickChecker) {
       this.setState({
         card: this.state.cards.sort(function (a, b) {
           return 0.5 - Math.random();
         }),
         score: this.state.score + 1,
-        message: ""
-      });
+        message: "",
+        clicked: this.state.clicked.concat(
+          currentCard
+        )
+      }, () => {
+        if (this.state.score === 12) {
+          this.setState({
+            card: this.state.cards.sort(function (a, b) {
+              return 0.5 - Math.random();
+            }),
+            message: "Nice job! You got all 12! Click an animal to play again!",
+            highScore: this.state.score,
+            score: 0,
+            clicked: []
+          })
+        }
+      })
+      console.log(this.state.clicked)
     }
     else {
-      // console.log(this.state.cards, this.state.card)
       this.setState({
         card: this.state.cards.sort(function (a, b) {
           return 0.5 - Math.random();
         }),
         score: 0,
         message: "You already clicked me! Click an animal to try again.",
+        clicked: []
       });
       if (this.state.score > this.state.highScore) {
         this.setState({
